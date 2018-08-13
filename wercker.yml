@@ -116,19 +116,20 @@ test:
           sudo yum -y localinstall xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm
           
           sudo curl -O "https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip"
+          sudo yum install unzip -y
           unzip -o chromedriver_linux64.zip
           chmod -R 0755 chromedriver
           cp chromedriver /usr/local/bin/chromedriver
           
-          sudo yum install java-1.8.0-openjdk.x86_64
+          sudo yum install java-1.8.0-openjdk.x86_64 -y
           chmod -R 0755 /etc/profile.d/jdk.sh
-          sudo yum install ant
+          sudo yum install ant -y
           chmod -R 0755 /etc/profile.d/ant_home.sh
-          sudo yum install yum-utils
+          sudo yum install yum-utils -y
           export JAVA_HOME = '/usr/lib/jvm/java'
           export ANT_HOME= '/usr/share/ant'
           
-          sudo yum install google-chrome-stable
+          sudo yum install google-chrome-stable -y
           
           
           
