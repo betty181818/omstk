@@ -112,15 +112,13 @@ test:
         name: Execute test step
         code: |
           echo "Executeing test step..."
-          sudo yum install google-chrome-stable
+          sudo curl -O "http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm"
+          sudo yum -y localinstall xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm
           
           sudo curl -O "https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip"
           unzip -o chromedriver_linux64.zip
           chmod -R 0755 chromedriver
           cp chromedriver /usr/local/bin/chromedriver
-          
-          sudo curl -O "http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm"
-          sudo yum -y localinstall xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm
           
           sudo yum install java-1.8.0-openjdk.x86_64
           chmod -R 0755 /etc/profile.d/jdk.sh
@@ -129,6 +127,14 @@ test:
           sudo yum install yum-utils
           export JAVA_HOME = '/usr/lib/jvm/java'
           export ANT_HOME= '/usr/share/ant'
+          
+          sudo yum install google-chrome-stable
+          
+          
+          
+          
+          
+          
           
           
           cd ./test/functional/WhackaPodUIAuto/
