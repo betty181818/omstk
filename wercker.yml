@@ -122,18 +122,14 @@ test:
           cp chromedriver /usr/local/bin/chromedriver
           
           sudo yum install java-1.8.0-openjdk.x86_64 -y
-          chmod -R 0755 /etc/profile.d/jdk.sh
           sudo yum install ant -y
-          chmod -R 0755 /etc/profile.d/ant_home.sh
           sudo yum install yum-utils -y
           export JAVA_HOME = '/usr/lib/jvm/java'
           export ANT_HOME= '/usr/share/ant'
           
+          
+          sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
           sudo yum install google-chrome-stable -y
-          
-          
-          
-          
           
           
           
