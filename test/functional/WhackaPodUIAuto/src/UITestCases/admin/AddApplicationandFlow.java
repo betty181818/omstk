@@ -164,7 +164,7 @@ public class AddApplicationandFlow extends BaseTestCase{
 		    	driver.findElement(By.xpath(".//*[@id='toaster-container']/div[1]/div[1]/div[1]/a")).click();
 		    }
 		    logger.info("click the exist application:");
-		    driver.findElement(By.xpath("//article/div[2]/div/div/div/div/a")).click();
+		    driver.findElement(By.xpath("//article/div[2]/div/div/div/div/a[.='omstk']")).click();
 		    Thread.sleep(5000);
 		    if (driver.findElements(By.xpath(".//*[@id='toaster-container']/div[1]/div[1]/div[1]/a")).size() != 0) { 
 		    	driver.findElement(By.xpath(".//*[@id='toaster-container']/div[1]/div[1]/div[1]/a")).click();
@@ -367,7 +367,7 @@ public class AddApplicationandFlow extends BaseTestCase{
 		    driver.findElement(By.xpath(".//*[@id='root']/div/div[1]/div/div/div/div[1]/a/img")).click();
 		    Thread.sleep(5000);
 		    logger.info("click the exist application:");
-		    driver.findElement(By.xpath("//article/div[2]/div/div/div/div/a")).click();
+		    driver.findElement(By.xpath("//article/div[2]/div/div/div/div/a[.='omstk']")).click();
 		    Thread.sleep(5000);
 		  
 		    logger.info("click the workflows tab:");

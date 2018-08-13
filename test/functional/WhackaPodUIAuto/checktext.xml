@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="WhackaPodUIAuto">
+              as the first entry and export the buildfile again. --><project basedir="." default="Checktext" name="WhackaPodUIAuto">
     <property environment="env"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -72,11 +72,11 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="TestSuite">
+        <target depends="build" name="Checktext">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="JunitTestSuites.TestSuite" todir="${junit.output.dir}"/>
+            <test name="UITestCases.admin.Checktext" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="WhackaPodUIAuto.classpath"/>
         </junit>

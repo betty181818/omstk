@@ -827,6 +827,8 @@ public static List<String> getCaseMsgStatus(String caseName){
 		            	srvconf.setUIUrl(nodevalue);
 		            if(currentinfo.getNodeName().equals("UIAdvancedUrl"))
 		            	srvconf.setUIAdvancedUrl(nodevalue);
+		            if(currentinfo.getNodeName().equals("AppUrl"))
+		            	srvconf.setAppUrl(nodevalue);
 		        }
 			}
 		

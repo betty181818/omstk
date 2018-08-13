@@ -31,12 +31,16 @@ public class HomePage extends CommonVariables {
 		wl = new WindowLink();
 	}
 	
+	
+	public void openAppPage() throws IOException,InterruptedException {  
+		ibrowser.Start_Browser3();
+	}
 	public void openHomePage() throws IOException,InterruptedException {  
 		ibrowser.Start_Browser();
 	}
-	public void openAppPage() throws IOException,InterruptedException {  
-		ibrowser.Start_Browser2();
-	} 
+	
+	
+	
 	public boolean isStartModelDisplayed() throws IOException,InterruptedException {  
 		return driver.findElement(By.id(startModalID)).isDisplayed();
 	} 

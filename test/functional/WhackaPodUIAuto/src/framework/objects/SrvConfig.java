@@ -11,7 +11,8 @@ import org.apache.log4j.Logger;
 public class SrvConfig{
 	
 	private String UIUrl;
-	private String UIAdvancedUrl;			
+	private String UIAdvancedUrl;
+	private String AppUrl;
 	
 public static final Logger logger = Logger.getLogger(SrvConfig.class);
 	
@@ -29,6 +30,13 @@ public static final Logger logger = Logger.getLogger(SrvConfig.class);
 	
 	public String getUIAdvancedUrl() {	
 		return this.UIAdvancedUrl;
+	}
+	public void setAppUrl(String AppUrl) {
+		this.AppUrl = AppUrl;	
+	}
+	
+	public String getAppUrl() {	
+		return this.AppUrl;
 	}
 
 }

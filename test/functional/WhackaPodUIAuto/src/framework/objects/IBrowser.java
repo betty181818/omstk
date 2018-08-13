@@ -69,7 +69,28 @@ public IBrowser(){
 	
 	public void Start_Browser2() throws IOException, InterruptedException {
 	       
-		String appurl=Configuration.srvconf.getUIAdvancedUrl();
+		String adurl=Configuration.srvconf.getUIAdvancedUrl();
+           
+        try { 
+        	driver.get(adurl);               
+        }
+        catch (Exception e) {
+        	Thread.sleep(3000);
+            logger.warn("Error with Start_Browser with first attempt" +  "The error thrown" + e);            
+            try {
+               	driver.get(adurl);  
+            }
+            catch (Exception e1) {
+            	logger.warn("Error with Start_Browser with second attempt" + "The error thrown" + e1);
+                System.out.println(e1);
+            }
+        }           
+//		      
+        Browser_Maximize();        
+    }
+	public void Start_Browser3() throws IOException, InterruptedException {
+	       
+		String appurl=Configuration.srvconf.getAppUrl();
            
         try { 
         	driver.get(appurl);               
@@ -87,8 +108,7 @@ public IBrowser(){
         }           
 //		      
         Browser_Maximize();        
-    }
-	
+    }	
 
 	
 	public void Browser_Wait(long waittime){

@@ -53,8 +53,9 @@ public class Checktext extends BaseTestCase{
 			
 			logger.info("Open the Oracle Microservice Development Toolkit application page:"); 		
 			HomePage app_page=new HomePage();
+			Thread.sleep(8000);
 			app_page.openAppPage();
-	
+			Thread.sleep(8000);
 			logger.info("text: " + driver.findElement(By.xpath("//html")).getText()); 
 			
 			boolean verify = false;

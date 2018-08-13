@@ -152,7 +152,11 @@ public class Getip extends BaseTestCase{
 
 			// Get the staff element by tag name directly
 		   Node server = doc.getElementsByTagName("server").item(0);
-
+		   
+		   // append a new node to AppUrl
+			Element AppUrl = doc.createElement("AppUrl");
+			AppUrl.appendChild(doc.createTextNode(Url));
+			server.appendChild(AppUrl);
 
 			// loop the server child node
 			NodeList list = server.getChildNodes();
@@ -162,10 +166,12 @@ public class Getip extends BaseTestCase{
 		                 Node node = list.item(i);
 
 			// get the UIAdvancedUrl element
+			if ("AppUrl".equals(node.getNodeName())) {
+				node.setTextContent(Url);
+				   }
 			if ("UIAdvancedUrl".equals(node.getNodeName())) {
 				node.setTextContent(Url);
 				   }
-
 
 				}
 
@@ -197,7 +203,7 @@ public class Getip extends BaseTestCase{
 	    	fail();
 	    }
 		finally{
-//			driver.quit();
+			driver.quit();
 
 		}
 	}

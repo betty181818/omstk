@@ -10,10 +10,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import UITestCases.loghandler.FinishTest;
-import UITestCases.api.ColorAPI;
-import UITestCases.games.DeploytoK8s;
-import UITestCases.games.WhackaPodHomePage;
-import UITestCases.loghandler.FinishTest;
 import UITestCases.test.Checktext;
 import UITestCases.test.Getip;
 
