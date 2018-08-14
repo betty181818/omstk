@@ -106,7 +106,7 @@ deploy-oke:
         REGION:              $REGION
 #Test step
 test:
-  box: oraclelinux:7.5
+  box: openjdk:8-jdk
   steps:
     # https://github.com/wercker/step-maven
     - wercker/maven:
