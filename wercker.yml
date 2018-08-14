@@ -105,13 +105,13 @@ deploy-oke:
         TENANCY_OCID:        $TENANCY_OCID
         REGION:              $REGION
 #Test step
-test:
-  box: maven:3.5.2-jdk-8
+box: oraclelinux:7.5
   steps:
-    - wercker/maven:
-      goals: clean install
-      settings: my-settings.xml
-      profiles: prod
+    # https://github.com/wercker/step-maven
+    - wercker/maven-jdk8:
+      goals: install
+      cache_repo: true
+      version: 3.5.2
 
     - script:
         name: Execute test step
@@ -120,10 +120,28 @@ test:
           sudo curl -O "http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm"
           sudo yum -y localinstall xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm
           
+          sudo curl -O "https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip"
+          sudo yum install unzip -y
+          unzip -o chromedriver_linux64.zip
+          chmod -R 0755 chromedriver
+          cp chromedriver /usr/local/bin/chromedriver
+          
+          sudo yum install java-1.8.0-openjdk.x86_64 -y
+          sudo yum install ant -y
+          sudo yum install yum-utils -y
+          pwd
+          sudo cat << EOF > /etc/yum.repos.d/google-chrome.repo
+          [google-chrome]
+          name=google-chrome
+          baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+          enabled=1
+          gpgcheck=1
+          gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+          EOF
+          sudo yum install google-chrome-stable -y
           pwd
           
-          cd ./omstk/test/functional/apptest
-          maven -test
+          ant -file ./test/functional/WhackaPodUIAuto/checktext.xml
           
 
           
