@@ -125,10 +125,7 @@ test:
           sudo yum install ant -y
           sudo yum install yum-utils -y
           
-          sudo -i
-          
-          cd /etc/yum.repos.d/
-          cat << EOF > /etc/yum.repos.d/google-chrome.repo
+          sudo cat << EOF > /etc/yum.repos.d/google-chrome.repo
           [google-chrome]
           name=google-chrome
           baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
@@ -137,10 +134,7 @@ test:
           gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
           EOF
           sudo yum localinstall google-chrome-stable -y
-          
-          
-          
-          
+         
           cd ./test/functional/WhackaPodUIAuto/
           ant -file ./test/functional/WhackaPodUIAuto/checktext.xml
 
