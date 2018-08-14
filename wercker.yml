@@ -106,16 +106,12 @@ deploy-oke:
         REGION:              $REGION
 #Test step
 test:
-box: openjdk:8-jdk
-    # Steps make up the actions in your pipeline
-    # Read more about steps on our dev center:
-    # http://devcenter.wercker.com/docs/steps/index.html
+box: maven:3.5.2-jdk-8
   steps:
-    # https://github.com/wercker/step-maven
-    - wercker/maven-jdk8:
-      goals: install
-      cache_repo: true
-      version: 3.5.2
+    - wercker/maven:
+      goals: clean install
+      settings: my-settings.xml
+      profiles: prod
 
     - script:
         name: Execute test step
