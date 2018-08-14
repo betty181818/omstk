@@ -125,7 +125,17 @@ test:
           sudo yum install ant -y
           sudo yum install yum-utils -y
           
-          sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+          sudo -i
+          
+          cd /etc/yum.repos.d/
+          cat << EOF > /etc/yum.repos.d/google-chrome.repo
+          [google-chrome]
+          name=google-chrome
+          baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+          enabled=1
+          gpgcheck=1
+          gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+          EOF
           sudo yum localinstall google-chrome-stable -y
           
           
