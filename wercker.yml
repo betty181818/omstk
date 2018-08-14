@@ -105,7 +105,8 @@ deploy-oke:
         TENANCY_OCID:        $TENANCY_OCID
         REGION:              $REGION
 #Test step
-box: oraclelinux:7.5
+test:
+  box: oraclelinux:7.5
   steps:
     # https://github.com/wercker/step-maven
     - wercker/maven-jdk8:
