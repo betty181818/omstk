@@ -106,7 +106,7 @@ deploy-oke:
         REGION:              $REGION
 #Test step
 test:
-box: maven:3.5.2-jdk-8
+  box: maven:3.5.2-jdk-8
   steps:
     - wercker/maven:
       goals: clean install
