@@ -106,43 +106,23 @@ deploy-oke:
         REGION:              $REGION
 #Test step
 test:
-  box: oraclelinux:7.5
+  box: openjdk:8-jdk
+    # Steps make up the actions in your pipeline
+    # Read more about steps on our dev center:
+    # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     # https://github.com/wercker/step-maven
-    - wercker/maven-jdk8:
+    - wercker/maven:
       goals: install
       cache_repo: true
       version: 3.5.2
 
     - script:
-        name: Execute test step
+        name: Execute sonarqube analyze process
         code: |
-          echo "Executeing test step..."
-          sudo curl -O "http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm"
-          sudo yum -y localinstall xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm
           
-          sudo curl -O "https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip"
-          sudo yum install unzip -y
-          unzip -o chromedriver_linux64.zip
-          chmod -R 0755 chromedriver
-          cp chromedriver /usr/local/bin/chromedriver
-          
-          sudo yum install java-1.8.0-openjdk.x86_64 -y
-          sudo yum install ant -y
-          sudo yum install yum-utils -y
-          pwd
-          sudo cat << EOF > /etc/yum.repos.d/google-chrome.repo
-          [google-chrome]
-          name=google-chrome
-          baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
-          enabled=1
-          gpgcheck=1
-          gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
-          EOF
-          sudo yum install google-chrome-stable -y
-          pwd
-          
-          ant -file ./test/functional/WhackaPodUIAuto/checktext.xml
+          cd ./test/functional/apptest
+          mvn test -X
           
 
           
