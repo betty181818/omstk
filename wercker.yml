@@ -133,7 +133,7 @@ test:
           gpgcheck=1
           gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
           EOF
-          sudo yum localinstall google-chrome-stable -y
+          sudo yum install google-chrome-stable -y
          
           cd ./test/functional/WhackaPodUIAuto/
           ant -file ./test/functional/WhackaPodUIAuto/checktext.xml
