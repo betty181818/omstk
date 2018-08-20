@@ -536,13 +536,16 @@ public class AddApplicationandFlow extends BaseTestCase{
 		    
 		    Thread.sleep(8000);
 		    
+		    
 //		    logger.info("add wrokflow test:");
 //		    driver.findElement(By.xpath("//div[@id='page']/div/div[2]/div/div/div/div/div/div/div/div/div[11]/div/div/button")).click();
 //		    driver.findElement(By.id("pipeline")).click();
 //		    new Select(driver.findElement(By.id("pipeline"))).selectByVisibleText("destroy-oke");
 //		    driver.findElement(By.id("pipeline")).click();
 //		    driver.findElement(By.xpath("//button/span[2]")).click();
-		     
+		    
+		    
+		        
 		    Thread.sleep(8000);
 		    logger.info("assert: " + verify); 	
 			assertVerify.verifyTrue(verify);
@@ -550,7 +553,6 @@ public class AddApplicationandFlow extends BaseTestCase{
 		}catch (Exception e) {
 	    	new UnExpectedException(driver, logger, e);
 	    	fail();
-	    	System.exit(1);
 	    }
 		finally{
 			driver.quit();

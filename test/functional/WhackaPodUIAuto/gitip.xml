@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="Checktext" name="WhackaPodUIAuto">
+              as the first entry and export the buildfile again. --><project basedir="." default="Getip" name="WhackaPodUIAuto">
     <property environment="env"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -72,20 +72,11 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="DeleteApplication">
+    <target  depends="build" name="Getip">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="UITestCases.admin.DeleteApplication" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="WhackaPodUIAuto.classpath"/>
-        </junit>
-    </target>
-    <target  depends="build" name="Checktext">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="UITestCases.test.Checktext" todir="${junit.output.dir}"/>
+            <test name="UITestCases.test.Getip" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="WhackaPodUIAuto.classpath"/>
         </junit>
