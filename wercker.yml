@@ -163,6 +163,7 @@ test:
                 #echo "Get IP FAIL!"
                 #exit 1
             #fi
+            cd ./test/functional/WhackaPodUIAuto/
             ant -file ./test/functional/WhackaPodUIAuto/checkbuild.xml
             #ant -file ./test/functional/WhackaPodUIAuto/checkbuild.xml -logfile test.log
             #cat test.log
