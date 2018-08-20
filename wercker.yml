@@ -167,15 +167,15 @@ test:
             #echo ${CLASSPATH}
 
             ant -diagnostics
-            ant -f ./test/functional/WhackaPodUIAuto/gitip.xml -logfile test.log
-            RETURN=`cat test.log | grep "FAILED" | wc -l`
-            if [ ${RETURN} -eq "0" ]; then
-                echo "Get IP PASS!"
-                exit 0
-            else
-                echo "Get IP FAIL!"
-                exit 1
-            fi
+            #ant -f ./test/functional/WhackaPodUIAuto/gitip.xml -logfile test.log
+            #RETURN=`cat test.log | grep "FAILED" | wc -l`
+            #if [ ${RETURN} -eq "0" ]; then
+                #echo "Get IP PASS!"
+                #exit 0
+            #else
+                #echo "Get IP FAIL!"
+                #exit 1
+            #fi
             ant -f ./test/functional/WhackaPodUIAuto/checkbuild.xml -logfile test.log
             RETURN=`cat test.log | grep "FAILED" | wc -l`
             if [ ${RETURN} -eq "0" ]; then
