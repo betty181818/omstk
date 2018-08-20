@@ -23,40 +23,42 @@ build:
     - script:
         name: Execute sonarqube analyze process
         code: |
-          mvn sonar:sonar -Dsonar.host.url=$SONAR_URL > ./temp_output
-          SONAR_GET_REPORT_URL=`cat ./temp_output | grep "More about the report processing at " | awk -F 'at ' '{print substr($2,1)}'`
-          cat ./temp_output
-          echo $SONAR_GET_REPORT_URL
+          echo "!!! start now ..."
+          #mvn sonar:sonar -Dsonar.host.url=$SONAR_URL > ./temp_output
+          #SONAR_GET_REPORT_URL=`cat ./temp_output | grep "More about the report processing at " | awk -F 'at ' '{print substr($2,1)}'`
+          #cat ./temp_output
+          #echo $SONAR_GET_REPORT_URL
           
     - script:
         name: Get sonarqube analyze result
         code: |
-          for((i=1;i<=$SONAR_GET_RESULT_LOOP_CNT;i++));
-          do
-            sleep 2m
-            echo "Get Sonarqube analyze process..."
-            reportProcess=$(curl -X GET -i $SONAR_GET_REPORT_URL | grep "status" | awk -F '"status":' '{print substr($2,2,7)}')
-            echo $reportProcess
-            if [ -z $reportProcess ]; then
-              continue
-            fi
-            if [ $reportProcess = "IN_PROGRESS" ]; then
-              continue
-            else
-              break
-            fi
-          done
-          fullResult=$(curl -X GET -i $SONAR_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY)
-          echo "Sonarqube analyze full result is:"
-          echo $fullResult
-          sonarResult=`echo $fullResult | grep projectStatus | awk -F '"status":' '{print substr($2,2,2)}'`
-          if [ -z $sonarResult ]; then
-            export sonarResult='NG'
-          fi
-          echo "Quality gate status is: $sonarResult"
-          if [ $sonarResult != "OK" ]; then
-            exit 1
-          fi
+          echo "!!! start now ..."
+          #for((i=1;i<=$SONAR_GET_RESULT_LOOP_CNT;i++));
+          #do
+            #sleep 2m
+            #echo "Get Sonarqube analyze process..."
+            #reportProcess=$(curl -X GET -i $SONAR_GET_REPORT_URL | grep "status" | awk -F '"status":' '{print substr($2,2,7)}')
+            #echo $reportProcess
+            #if [ -z $reportProcess ]; then
+              #continue
+            #fi
+            #if [ $reportProcess = "IN_PROGRESS" ]; then
+              #continue
+            #else
+              #break
+            #fi
+          #done
+          #fullResult=$(curl -X GET -i $SONAR_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY)
+          #echo "Sonarqube analyze full result is:"
+          #echo $fullResult
+          #sonarResult=`echo $fullResult | grep projectStatus | awk -F '"status":' '{print substr($2,2,2)}'`
+          #if [ -z $sonarResult ]; then
+            #export sonarResult='NG'
+          #fi
+          #echo "Quality gate status is: $sonarResult"
+          #if [ $sonarResult != "OK" ]; then
+            #exit 1
+          #fi
 #Build docker image and push to OCIR.
 push-to-registry:
   box: openjdk:8-jdk
@@ -73,7 +75,7 @@ push-to-registry:
 provision-oke:
   box: oraclelinux:7.5
   steps:
-    - betty181818/provision-oke:
+    - beiwangtest18/provision-oke:
         NAME_PREFIX:         $NAME_PREFIX
         USER_OCID:           $USER_OCID
         FINGERPRINT:         $FINGERPRINT
@@ -85,7 +87,7 @@ provision-oke:
 destroy-oke:
   box: oraclelinux:7.5
   steps:
-    - betty181818/destroy-oke:
+    - beiwangtest18/destroy-oke:
         NAME_PREFIX:         $NAME_PREFIX
         USER_OCID:           $USER_OCID
         FINGERPRINT:         $FINGERPRINT
@@ -97,7 +99,7 @@ destroy-oke:
 deploy-oke:
   box: oraclelinux:7.5
   steps:
-    - betty181818/deploy-to-oke:
+    - beiwangtest18/deploy-to-oke:
         NAME_PREFIX:         $NAME_PREFIX
         USER_OCID:           $USER_OCID
         FINGERPRINT:         $FINGERPRINT
@@ -106,23 +108,80 @@ deploy-oke:
         REGION:              $REGION
 #Test step
 test:
-  box: openjdk:8-jdk
-    # Steps make up the actions in your pipeline
-    # Read more about steps on our dev center:
-    # http://devcenter.wercker.com/docs/steps/index.html
+  box: oraclelinux:7.5
   steps:
-    # https://github.com/wercker/step-maven
-    - wercker/maven:
-      goals: install
-      cache_repo: true
-      version: 3.5.2
-
     - script:
-        name: Execute sonarqube analyze process
+        name: Execute test step
         code: |
-          
-          cd ./test/functional/apptest
-          mvn test -X
-          
+            echo "!!! Installing xvfb now ..."
+            sudo curl -O "http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm"
+            sudo yum -y localinstall xorg-x11-server-Xvfb-1.19.5-5.el7.x86_64.rpm
+            echo "!!! Installing chromedriver now ..."
+            sudo curl -O "https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip"
+            sudo yum install unzip -y
+            unzip -o chromedriver_linux64.zip
+            chmod -R 0755 chromedriver
+            sudo cp chromedriver /usr/local/bin/chromedriver
+            ls -lart /usr/local/bin/chromedriver
 
-          
+            echo "!!! Installing chrome now ..."
+            sudo cat << EOF > /etc/yum.repos.d/google-chrome.repo
+            [google-chrome]
+            name=google-chrome
+            baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64/
+            enabled=1
+            gpgcheck=1
+            gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+            EOF
+            
+            sudo yum install google-chrome-stable -y
+            pwd
+
+            echo "!!! Install JAVA and ANT now ..."
+            sudo yum install java-1.8.0-openjdk.x86_64 -y
+            sudo yum install ant -y
+            sudo yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/ant-junit-1.9.2-9.el7.noarch.rpm
+            #sudo yum install -y ant-junit
+            #rm -rf /var/cache/yum
+            #yum clean all
+            #pwd         
+
+            echo "!!! Checking ENV now ..."
+            export ANT_HOME=/usr/share/ant
+            export JAVA_HOME=/usr/lib/jvm/java
+            #export PATH=$JAVA_HOME/bin:$PATH:$ANT_HOME/bin 
+            #export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar $ANT_HOME/lib/
+            #sudo cp ./test/ant-junit.jar $ANT_HOME/lib/
+            #sudo cp ./test/ant-junit4.jar $ANT_HOME/lib/
+            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar $JAVA_HOME/lib/
+            #sudo cp ./test/ant-junit.jar $JAVA_HOME/lib/
+            #sudo cp ./test/ant-junit4.jar $JAVA_HOME/lib/
+            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar ~/.ant/lib/
+            #sudo cp ./test/ant-junit.jar ~/.ant/lib/
+            #sudo cp ./test/ant-junit4.jar ~/.ant/lib/
+            
+            echo ${ANT_HOME}
+            echo ${JAVA_HOME}
+            #echo ${PATH}
+            #echo ${CLASSPATH}
+
+            ant -diagnostics
+            ant -f ./test/functional/WhackaPodUIAuto/gitip.xml -logfile test.log
+            RETURN=`cat test.log | grep "FAILED" | wc -l`
+            if [ ${RETURN} -eq "0" ]; then
+                echo "Get IP PASS!"
+                exit 0
+            else
+                echo "Get IP FAIL!"
+                exit 1
+            fi
+            ant -f ./test/functional/WhackaPodUIAuto/checkbuild.xml -logfile test.log
+            RETURN=`cat test.log | grep "FAILED" | wc -l`
+            if [ ${RETURN} -eq "0" ]; then
+                echo "Get IP PASS!"
+                exit 0
+            else
+                echo "Get IP FAIL!"
+                exit 1
+            fi
