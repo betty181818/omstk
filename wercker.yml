@@ -154,10 +154,10 @@ test:
             
             ant -diagnostics
             sudo cd ./test/functional/WhackaPodUIAuto
-            ant -f getip.xml -logfile getip.log
+            ant -file getip.xml -logfile getip.log
             
-            RETURN=`cat getip.log | grep "FAILED" | wc -l`
-            if [ ${RETURN} -eq "0" ]; then
+            RETURN=`cat getip.log | grep "assert: true" | wc -l`
+            if [ ${RETURN} -eq "1" ]; then
                 echo "GET IP PASS!"
                 exit 0
             else
@@ -165,10 +165,10 @@ test:
                 exit 1
             fi
             
-            ant -f checkbuild.xml -logfile checktext.log
+            ant -file checkbuild.xml -logfile checktext.log
             
-            RETURN=`cat checktext.log | grep "FAILED" | wc -l`
-            if [ ${RETURN} -eq "0" ]; then
+            RETURN=`cat checktext.log | grep "assert: true" | wc -l`
+            if [ ${RETURN} -eq "1" ]; then
                 echo "check text PASS!"
                 exit 0
             else
