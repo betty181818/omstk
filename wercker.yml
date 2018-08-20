@@ -144,8 +144,8 @@ test:
             #yum clean all
             #pwd         
             echo "!!! Checking ENV now ..."
-            export ANT_HOME=/usr/share/ant
-            export JAVA_HOME=/usr/lib/jvm/java
+            sudo export ANT_HOME=/usr/share/ant
+            sudo export JAVA_HOME=/usr/lib/jvm/java
             #export PATH=$JAVA_HOME/bin:$PATH:$ANT_HOME/bin 
             #export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
             sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar $ANT_HOME/lib/

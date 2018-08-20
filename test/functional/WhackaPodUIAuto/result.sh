@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+#!/bin/sh
 
 RETURN=`cat test.log | grep "FAILED" | wc -l`
 if [ ${RETURN} -eq "0" ]; then

@@ -1,0 +1,41 @@
+
+build-subprojects:
+
+init:
+
+build-project:
+     [echo] WhackaPodUIAuto: /home/vagrant/test1/WhackaPodUIAuto/checkbuild.xml
+    [javac] Compiling 1 source file to /home/vagrant/test1/WhackaPodUIAuto/bin
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.7
+    [javac] Note: /home/vagrant/test1/WhackaPodUIAuto/src/UITestCases/test/Checktext.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] 1 warning
+
+build:
+
+Checktext:
+    [junit] Running UITestCases.test.Checktext
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.765 sec
+    [junit] Output:
+    [junit] 16:09:11.879 [main] framework.global.Configuration.init(Configuration.java:56)evel Configuration Initializing...
+    [junit] 16:09:11.907 [main] framework.global.Configuration.parseXML(Configuration.java:720)evel Reading server and Hardware info...
+    [junit] 16:09:11.909 [main] framework.global.Configuration.parseXML(Configuration.java:750)evel ServerConfig.xml is parsed successfully.
+    [junit] 16:09:11.910 [main] framework.global.Configuration.getlibrarydata(Configuration.java:833)evel Set SrvConfig successfully.
+    [junit] 16:09:12.036 [main] framework.global.Configuration.init(Configuration.java:56)evel Configuration Initializing...
+    [junit] 16:09:12.053 [main] framework.global.Configuration.parseXML(Configuration.java:720)evel Reading server and Hardware info...
+    [junit] 16:09:12.054 [main] framework.global.Configuration.parseXML(Configuration.java:750)evel ServerConfig.xml is parsed successfully.
+    [junit] 16:09:12.055 [main] framework.global.Configuration.getlibrarydata(Configuration.java:833)evel Set SrvConfig successfully.
+    [junit] 16:09:12.055 [main] UITestCases.test.Checktext.setUpBeforeClass(Checktext.java:36)evel Checktext:
+    [junit] 16:09:15.106 [main] UITestCases.test.Checktext.test(Checktext.java:54)evel Open the Oracle Microservice Development Toolkit application page:
+    [junit] 16:09:16.566 [main] UITestCases.test.Checktext.test(Checktext.java:58)evel text: Hello from Oracle Microservice Development Toolkit!
+    [junit] Hello from Oracle Microservice Development Toolkit!16:09:24.677 [main] UITestCases.test.Checktext.test(Checktext.java:72)evel assert: true
+    [junit] 
+    [junit] Error: 
+    [junit] Starting ChromeDriver 2.40.565383 (76257d1ab79276b2d53ee976b2c3e3b9f335cde7) on port 26715
+    [junit] Only local connections are allowed.
+    [junit] Aug 17, 2018 4:09:11 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+    [junit] INFO: Detected dialect: OSS
+    [junit] 
+
+BUILD SUCCESSFUL
+Total time: 20 seconds
