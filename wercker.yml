@@ -164,4 +164,5 @@ test:
             #echo ${PATH}
             #echo ${CLASSPATH}
             ant -diagnostics
+            sudo cd ./test/functional/WhackaPodUIAuto
             ant -file ./test/functional/WhackaPodUIAuto/checkbuild.xml
