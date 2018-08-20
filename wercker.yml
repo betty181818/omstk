@@ -154,4 +154,5 @@ test:
             
             ant -diagnostics
             sudo cd ./test/functional/WhackaPodUIAuto
+            ant -file getip.xml
             ant -file checkbuild.xml
