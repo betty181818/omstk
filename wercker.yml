@@ -158,18 +158,18 @@ test:
             
             RETURN=`cat getip.log | grep "FAILED" | wc -l`
             if [ ${RETURN} -eq "0" ]; then
-	          echo "Get IP PASS!"
-	          exit 0
+	    	echo "Get IP PASS!"
+	    	exit 0
             else
-	          echo "GET IP FAIL!"
-	          exit 1
+	    	echo "GET IP FAIL!"
+	    	exit 1
             fi
             ant -f checkbuild.xml -logfile checktext.log
             RETURN=`cat checktext.log | grep "FAILED" | wc -l`
             if [ ${RETURN} -eq "0" ]; then
-	          echo "check text PASS!"
-	          exit 0
+	    	echo "check text PASS!"
+	    	exit 0
             else
-	          echo "check text FAIL!"
-	          exit 1
+	    	echo "check text FAIL!"
+	    	exit 1
             fi
