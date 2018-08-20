@@ -72,14 +72,6 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="DeleteApplication">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="UITestCases.admin.DeleteApplication" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="WhackaPodUIAuto.classpath"/>
-        </junit>
     </target>
     <target  depends="build" name="Checktext">
         <mkdir dir="${junit.output.dir}"/>
