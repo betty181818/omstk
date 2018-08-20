@@ -129,11 +129,11 @@ public class  CommonVariables implements CommonFunctions {
 		options.addArguments("--lang=en-US");
 //		options.addArguments("--no-sandbox");
 //		options.addArguments("--single-process");
-//		options.addArguments("--headless");
+		options.addArguments("--headless");
 
 		//This is for Linux, should enable on Linux testing
-//		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-	    System.setProperty("webdriver.chrome.driver", "C://Program Files (x86)//Google//Chrome//Application//chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+//	    System.setProperty("webdriver.chrome.driver", "C://Program Files (x86)//Google//Chrome//Application//chromedriver.exe");
 		 //Solve WebDriverException: unknown error: Chrome failed to start: exited abnormally
 
 		ChromeDriver driver = new ChromeDriver(options);
