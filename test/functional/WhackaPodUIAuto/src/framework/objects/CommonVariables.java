@@ -127,7 +127,7 @@ public class  CommonVariables implements CommonFunctions {
 		
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--lang=en-US");
-//		options.addArguments("--no-sandbox");
+		options.addArguments("--no-sandbox");
 //		options.addArguments("--single-process");
 		options.addArguments("--headless");
 
