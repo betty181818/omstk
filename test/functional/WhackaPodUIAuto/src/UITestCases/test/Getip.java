@@ -114,16 +114,6 @@ public class Getip extends BaseTestCase{
 		    if (driver.findElements(By.xpath(".//*[@id='toaster-container']/div[1]/div[1]/div[1]/a")).size() != 0) { 
 		    	driver.findElement(By.xpath(".//*[@id='toaster-container']/div[1]/div[1]/div[1]/a")).click();
 		    }
-		    logger.info("click the load more:");
-		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
-		    Thread.sleep(3000);
-		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
-		    Thread.sleep(3000);
-		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
-		    Thread.sleep(3000);
-		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
-		    Thread.sleep(3000);
-		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
 		    Thread.sleep(5000);
 		    logger.info("click the oke link:");
 	
@@ -207,7 +197,7 @@ public class Getip extends BaseTestCase{
 	    	fail();
 	    }
 		finally{
-			driver.quit();
+//			driver.quit();
 
 		}
 	}

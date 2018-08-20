@@ -61,7 +61,7 @@ public class Checktext extends BaseTestCase{
 			Thread.sleep(8000);
 			String word = driver.findElement(By.xpath("//html")).getText();
 			System.out.print(word);
-			if (driver.findElement(By.xpath("//html")).getText().equals("Hello from Oracle Microservice Development Toolkit!"))
+			if (driver.findElement(By.xpath("//html")).getText().equals("Hello from Oracle123 Microservice Development Toolkit!"))
 			{
 				verify = true;
 			}

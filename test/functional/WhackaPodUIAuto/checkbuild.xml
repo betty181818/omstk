@@ -14,8 +14,6 @@
         <pathelement location="lib/hamcrest-core-1.3.jar"/>
         <pathelement location="lib/hamcrest-core-1.3-javadoc.jar"/>
         <pathelement location="lib/hamcrest-core-1.3-sources.jar"/>
-        <pathelement location="lib/ant-junit.jar"/>
-        <pathelement location="lib/ant-junit4.jar"/>
         <pathelement location="lib/junit-4.11.jar"/>
         <pathelement location="lib/junit-4.11-javadoc.jar"/>
         <pathelement location="lib/junit-4.11-sources.jar"/>
@@ -73,6 +71,15 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="DeleteApplication">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="UITestCases.admin.DeleteApplication" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="WhackaPodUIAuto.classpath"/>
+        </junit>
     </target>
     <target  depends="build" name="Checktext">
         <mkdir dir="${junit.output.dir}"/>
