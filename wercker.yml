@@ -141,32 +141,19 @@ test:
             sudo yum install java-1.8.0-openjdk.x86_64 -y
             sudo yum install ant -y
             sudo yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/ant-junit-1.9.2-9.el7.noarch.rpm
-            #sudo yum install -y ant-junit
-            #rm -rf /var/cache/yum
-            #yum clean all
-            #pwd         
+                    
 
             echo "!!! Checking ENV now ..."
-            export ANT_HOME=/usr/share/ant
-            export JAVA_HOME=/usr/lib/jvm/java
-            #export PATH=$JAVA_HOME/bin:$PATH:$ANT_HOME/bin 
-            #export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar $ANT_HOME/lib/
-            #sudo cp ./test/ant-junit.jar $ANT_HOME/lib/
-            #sudo cp ./test/ant-junit4.jar $ANT_HOME/lib/
-            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar $JAVA_HOME/lib/
-            #sudo cp ./test/ant-junit.jar $JAVA_HOME/lib/
-            #sudo cp ./test/ant-junit4.jar $JAVA_HOME/lib/
-            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar ~/.ant/lib/
-            #sudo cp ./test/ant-junit.jar ~/.ant/lib/
-            #sudo cp ./test/ant-junit4.jar ~/.ant/lib/
+            sudo export ANT_HOME=/usr/share/ant
+            sudo export JAVA_HOME=/usr/lib/jvm/java
+            
             
             echo ${ANT_HOME}
             echo ${JAVA_HOME}
-            #echo ${PATH}
-            #echo ${CLASSPATH}
+            
 
             ant -diagnostics
+            
             #ant -f ./test/functional/WhackaPodUIAuto/gitip.xml -logfile test.log
             #RETURN=`cat test.log | grep "FAILED" | wc -l`
             #if [ ${RETURN} -eq "0" ]; then
@@ -176,12 +163,13 @@ test:
                 #echo "Get IP FAIL!"
                 #exit 1
             #fi
-            ant -f ./test/functional/WhackaPodUIAuto/checkbuild.xml -logfile test.log
+            ant -file ./test/functional/WhackaPodUIAuto/checkbuild.xml -logfile test.log
+            cat test.log
             RETURN=`cat test.log | grep "FAILED" | wc -l`
             if [ ${RETURN} -eq "0" ]; then
-                echo "Get IP PASS!"
+                echo "Check text PASS!"
                 exit 0
             else
-                echo "Get IP FAIL!"
+                echo "Check text FAIL!"
                 exit 1
             fi
