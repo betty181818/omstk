@@ -138,7 +138,8 @@ test:
             echo "!!! Install JAVA and ANT now ..."
             sudo yum install java-1.8.0-openjdk.x86_64 -y
             sudo yum install ant -y
-            sudo rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/ant-junit-1.9.2-9.el7.noarch.rpm
+            #sudo rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/ant-junit-1.9.2-9.el7.noarch.rpm
+            sudo yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/ant-junit-1.9.2-9.el7.noarch.rpm
             #sudo yum install -y ant-junit
             #rm -rf /var/cache/yum
             #yum clean all
