@@ -147,22 +147,11 @@ test:
             echo "!!! Checking ENV now ..."
             sudo export ANT_HOME=/usr/share/ant
             sudo export JAVA_HOME=/usr/lib/jvm/java
-            #export PATH=$JAVA_HOME/bin:$PATH:$ANT_HOME/bin 
-            #export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar $ANT_HOME/lib/
-            #sudo cp ./test/ant-junit.jar $ANT_HOME/lib/
-            #sudo cp ./test/ant-junit4.jar $ANT_HOME/lib/
-            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar $JAVA_HOME/lib/
-            #sudo cp ./test/ant-junit.jar $JAVA_HOME/lib/
-            #sudo cp ./test/ant-junit4.jar $JAVA_HOME/lib/
-            #sudo cp ./test/functional/WhackaPodUIAuto/lib/junit-4.11.jar ~/.ant/lib/
-            #sudo cp ./test/ant-junit.jar ~/.ant/lib/
-            #sudo cp ./test/ant-junit4.jar ~/.ant/lib/
+           
             
             echo ${ANT_HOME}
             echo ${JAVA_HOME}
-            #echo ${PATH}
-            #echo ${CLASSPATH}
+            
             ant -diagnostics
             sudo cd ./test/functional/WhackaPodUIAuto
             ant -file checkbuild.xml
