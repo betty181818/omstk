@@ -152,7 +152,10 @@ test:
             echo ${ANT_HOME}
             echo ${JAVA_HOME}
             
-            ant -diagnostics
+            #ant -diagnostics
             sudo cd ./test/functional/WhackaPodUIAuto
-            ant -file getip.xml
-            ant -file checkbuild.xml
+            sudo chmod 777 result.sh
+            ant -f getip.xml -logfile test.log
+            sudo ./result.sh
+            ant -file checkbuild.xml -logfile test.log
+            sudo ./result.sh
