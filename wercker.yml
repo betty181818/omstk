@@ -147,15 +147,14 @@ test:
             echo "!!! Checking ENV now ..."
             sudo export ANT_HOME=/usr/share/ant
             sudo export JAVA_HOME=/usr/lib/jvm/java
-           
-            
             echo ${ANT_HOME}
             echo ${JAVA_HOME}
-            
             #ant -diagnostics
             sudo cd ./test/functional/WhackaPodUIAuto
             sudo chmod 777 result.sh
+            echo "!!!Run get IP test case"
             ant -f getip.xml -logfile test.log
             sudo ./result.sh
+            echo "!!!Run open application and check text test case"
             ant -file checkbuild.xml -logfile test.log
             sudo ./result.sh
