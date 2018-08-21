@@ -124,7 +124,12 @@ public class Getip extends BaseTestCase{
 		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
 		    Thread.sleep(3000);
 		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
-		    Thread.sleep(5000);
+		    Thread.sleep(3000);
+		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
+		    Thread.sleep(3000);
+		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
+		    Thread.sleep(3000);
+		    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='No activity yet'])[1]/following::a[1]")).click();
 		    logger.info("click the oke link:");
 	
 		    driver.findElement(By.xpath("(//span[contains(text(),'deploy-oke')]/parent::div/preceding-sibling::div/i[@class='icon-passed icon-color-success'])[1]")).click();
